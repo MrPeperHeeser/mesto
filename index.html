@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header__logo"></div>
+        <div class="header__line"></div>
+    </header>
+
+    <main class="content">
+
+        <section class="profile">
+            <img class="profile__avatar" src="./images/profile/avatar.png">
+            <div class="profile__info">
+                <div class="profile__username">
+                    <h1 class="profile__username-text">Жак-Ив Кусто</h1>
+                    <div class="profile__edit-button"></div>
+                </div>
+                <p class="profile__description">Исследователь океана</p>
+            </div>
+            <div class="profile__add-button">
+                <div class="profile__add"></div>
+            </div>
+        </section>
+
+        <section class="elements">
+            <ul class="elements__list">
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
+                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Ч...</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/elbrus.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text">Гора Эльбрус</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/dombay.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text">Домбай</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/elbrus.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text">Гора Эльбрус</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/dombay.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text">Домбай</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg">
+                    <div class="elements__element-footer">
+                        <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
+                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Ч...</h2>
+                        <div class="elements__like"></div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+</div>
+<div class="modal">
+    <div class="modal__container">
+        <button class="modal__close-button"></button>
+        <h3 class="modal__text">Редактировать профиль</h3>
+        <form class="modal__form"></form>
+    </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>

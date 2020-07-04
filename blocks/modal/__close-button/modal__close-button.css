@@ -1,0 +1,10 @@
+.modal__close-button{
+    align-self: flex-end;
+    width: 41px;
+    height: 42px;
+    background: transparent;
+    border: none;
+    background-image: url("../../../images/modal/close-icon.svg");
+    padding: 0;
+    background-size: cover;
+}

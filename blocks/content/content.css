@@ -1,0 +1,19 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 69%;
+}
+
+@media screen and (min-width: 1024px) {
+    .content {
+        width: 882px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .content {
+        max-width: 282px;
+        width: 100%;
+    }
+}

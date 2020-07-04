@@ -1,0 +1,21 @@
+.profile__username-text{
+    display: flex;
+    width: 295px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 1023px) {
+    .profile__username-text {
+        display: inline-block;
+        text-align: center;
+        width: 201px;
+        font-size: 27px;
+    }
+}
