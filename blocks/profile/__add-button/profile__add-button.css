@@ -1,4 +1,5 @@
 .profile__add-button{
+    background: transparent url("../../../images/profile/add.svg") no-repeat center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,9 +7,24 @@
     height: 50px;
     margin-left: auto;
     border: 1px solid white;
+    cursor: pointer;
 }
 
-@media screen and (max-width: 1023px) {
+.profile__add-button:hover{
+    opacity: 0.5;
+}
+
+.profile__add-button:focus{
+    outline: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .profile__add-button {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 767px) {
     .profile__add-button {
         width: 282px;
         height: 50px;

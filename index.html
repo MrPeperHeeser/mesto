@@ -16,23 +16,22 @@
     <main class="content">
 
         <section class="profile">
-            <img class="profile__avatar" src="./images/profile/avatar.png">
+            <img class="profile__avatar" src="./images/profile/avatar.png" alt="Аватар">
             <div class="profile__info">
                 <div class="profile__username">
                     <h1 class="profile__username-text">Жак-Ив Кусто</h1>
-                    <div class="profile__edit-button"></div>
+                    <button class="profile__edit-button"></button>
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <div class="profile__add-button">
-                <div class="profile__add"></div>
-            </div>
+            <button class="profile__add-button">
+            </button>
         </section>
 
         <section class="elements">
             <ul class="elements__list">
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg">
+                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg" alt="Карачаевск">
                     <div class="elements__element-footer">
                         <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
                         <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Ч...</h2>
@@ -40,38 +39,38 @@
                     </div>
                 </li>
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/elbrus.jpg">
+                    <img class="elements__element-img" src="./images/elements/elbrus.jpg" alt="Эльбрус">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Гора Эльбрус</h2>
                         <div class="elements__like"></div>
                     </div>
                 </li>
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/dombay.jpg">
+                    <img class="elements__element-img" src="./images/elements/dombay.jpg" alt="Домбай">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Домбай</h2>
                         <div class="elements__like"></div>
                     </div>
                 </li>
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/elbrus.jpg">
+                    <img class="elements__element-img" src="./images/elements/elbrus.jpg" alt="Эльбрус">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Гора Эльбрус</h2>
                         <div class="elements__like"></div>
                     </div>
                 </li>
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/dombay.jpg">
+                    <img class="elements__element-img" src="./images/elements/dombay.jpg" alt="Домбай">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Домбай</h2>
                         <div class="elements__like"></div>
                     </div>
                 </li>
                 <li class="elements__element">
-                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg">
+                    <img class="elements__element-img" src="./images/elements/karachaevsk.jpg" alt="Карачаевск">
                     <div class="elements__element-footer">
                         <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
-                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Ч...</h2>
+                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Черкессия</h2>
                         <div class="elements__like"></div>
                     </div>
                 </li>
@@ -84,13 +83,24 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 </div>
-<div class="modal">
-    <div class="modal__container">
-        <button class="modal__close-button"></button>
-        <h3 class="modal__text">Редактировать профиль</h3>
-        <form class="modal__form"></form>
+<div class="popup popup_close">
+    <div class="popup__background"></div>
+    <div class="popup__container">
+        <h3 class="popup__text">Редактировать профиль</h3>
+        <form action="#" class="popup__form" method="post">
+            <label>
+                <input type="text" class="popup__form-name" value="Жак-Ив Кусто">
+            </label>
+            <label>
+                <input type="text" class="popup__form-description" value="Исследователь океана">
+            </label>
+            <button type="submit" class="popup__form-btn">
+                Сохранить
+            </button>
+        </form>
+        <button class="popup__close-button"></button>
     </div>
 </div>
-<script src="index.js"></script>
+<script src="scripts/index.js"></script>
 </body>
 </html>
