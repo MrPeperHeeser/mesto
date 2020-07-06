@@ -1,12 +1,13 @@
-.popup__form-description{
+.popup__form-input{
+    box-sizing: border-box;
     border: none;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
     width: 100%;
-    margin-top: 29px;
+    margin-top: 54px;
 }
 
-.popup__form-description:focus {
+.popup__form-input:focus {
     outline: none;
     box-shadow: none;
 }

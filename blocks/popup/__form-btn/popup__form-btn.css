@@ -21,9 +21,14 @@
     outline: none;
 }
 
+@media screen and (max-width: 1023px) {
+    .popup__form-btn {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .popup__form-btn {
         max-width: 320px;
-        width: 100%;
     }
 }
