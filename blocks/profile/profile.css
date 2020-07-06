@@ -5,23 +5,22 @@
 @import url(./__edit-button/profile__edit-button.css);
 @import url(./__username/profile__username.css);
 @import url(./__username-text/profile__username-text.css);
-@import url(./__add/profile__add.css);
 
 .profile {
     display: flex;
     flex-direction: row;
     margin-top: 40px;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
     .profile {
         margin-top: 45px;
     }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 767px) {
     .profile {
         display: flex;
         flex-direction: column;

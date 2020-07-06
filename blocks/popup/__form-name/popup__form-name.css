@@ -1,0 +1,16 @@
+.popup__form-name{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    width: 100%;
+    margin-top: 54px;
+}
+
+.popup__form-name:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input::placeholder{
+    color: #000000;
+}

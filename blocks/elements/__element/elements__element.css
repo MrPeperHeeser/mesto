@@ -1,5 +1,7 @@
-.elements__element{
+.elements__element {
     display: flex;
     flex-direction: column;
-    width: 282px;
+    width: auto;
+    margin: 0;
+    padding: 0;
 }

@@ -1,0 +1,29 @@
+.popup__form-btn{
+    border: none;
+    width: 358px;
+    height: 50px;
+    background-color: black;
+    margin-top: 48px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.popup__form-btn:hover{
+    opacity: 0.8;
+}
+
+.popup__form-btn:focus{
+    outline: none;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__form-btn {
+        max-width: 320px;
+        width: 100%;
+    }
+}

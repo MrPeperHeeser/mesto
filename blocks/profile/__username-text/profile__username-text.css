@@ -1,5 +1,5 @@
 .profile__username-text{
-    display: flex;
+    display: inline-block;
     width: 295px;
     font-style: normal;
     font-weight: 500;
@@ -8,12 +8,20 @@
     color: #FFFFFF;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .profile__username-text {
-        display: inline-block;
+        width: 150px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__username-text {
         text-align: center;
         width: 201px;
         font-size: 27px;

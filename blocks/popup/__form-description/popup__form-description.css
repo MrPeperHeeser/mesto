@@ -1,0 +1,12 @@
+.popup__form-description{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    width: 100%;
+    margin-top: 29px;
+}
+
+.popup__form-description:focus {
+    outline: none;
+    box-shadow: none;
+}
