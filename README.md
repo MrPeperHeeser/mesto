@@ -18,4 +18,4 @@
 
 Добавить интерактивный эелемент в виду счетчика лайков и возможность загрузки фотографий.
 
-Сайт доступен по ссылке: https://mrpeperheeser.github.io/mesto/index.html
+Сайт доступен по ссылке: https://mrpeperheeser.github.io/mesto
