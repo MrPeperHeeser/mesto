@@ -10,7 +10,6 @@
 <div class="page">
     <header class="header">
         <div class="header__logo"></div>
-        <div class="header__line"></div>
     </header>
 
     <main class="content">
@@ -20,7 +19,7 @@
             <div class="profile__info">
                 <div class="profile__username">
                     <h1 class="profile__username-text">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
@@ -33,45 +32,43 @@
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/karachaevsk.jpg" alt="Карачаевск">
                     <div class="elements__element-footer">
-                        <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
-                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Ч...</h2>
-                        <div class="elements__like"></div>
+                        <h2 class="elements__text">Карачаево-Черкессия</h2>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/elbrus.jpg" alt="Эльбрус">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Гора Эльбрус</h2>
-                        <div class="elements__like"></div>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/dombay.jpg" alt="Домбай">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Домбай</h2>
-                        <div class="elements__like"></div>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/elbrus.jpg" alt="Эльбрус">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Гора Эльбрус</h2>
-                        <div class="elements__like"></div>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/dombay.jpg" alt="Домбай">
                     <div class="elements__element-footer">
                         <h2 class="elements__text">Домбай</h2>
-                        <div class="elements__like"></div>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__element-img" src="./images/elements/karachaevsk.jpg" alt="Карачаевск">
                     <div class="elements__element-footer">
-                        <h2 class="elements__text elements__text_hide-on-mobile">Карачаевск</h2>
-                        <h2 class="elements__text elements__text_show-on-mobile">Карачаево-Черкессия</h2>
-                        <div class="elements__like"></div>
+                        <h2 class="elements__text">Карачаево-Черкессия</h2>
+                        <button class="elements__like-btn" type="button"></button>
                     </div>
                 </li>
             </ul>
@@ -83,13 +80,12 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 </div>
-<div class="popup popup_close">
-    <div class="popup__background"></div>
+<div class="popup">
     <div class="popup__container">
         <h3 class="popup__text">Редактировать профиль</h3>
-        <form action="#" class="popup__form" method="post">
-            <input type="text" class="popup__form-input" value="Жак-Ив Кусто" title="username">
-            <input type="text" class="popup__form-input" value="Исследователь океана" title="description">
+        <form action="#" class="popup__form" method="post" name="editProfileForm">
+            <input type="text" class="popup__form-input popup__form-input_username-field" value="Жак-Ив Кусто" title="username">
+            <input type="text" class="popup__form-input popup__form-input_description-field" value="Исследователь океана" title="description">
             <button type="submit" class="popup__form-btn">
                 Сохранить
             </button>

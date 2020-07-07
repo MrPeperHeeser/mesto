@@ -1,11 +1,10 @@
 @import url(./__logo/header__logo.css);
-@import url(./__line/header__line.css);
 .header {
     display: flex;
     flex-direction: column;
     width: 69%;
-    height: 74px;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (min-width: 1024px) {
@@ -26,7 +25,6 @@
     .header {
         max-width: 320px;
         width: 100%;
-        height: 56px;
         margin-top: 28px;
     }
 }

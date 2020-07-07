@@ -4,22 +4,26 @@
     width: 143px;
     height: 34px;
     background-size: cover;
+    margin-bottom: 41px;
 }
 
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
     .header__logo {
         width: 103px;
         height: 24px;
-        margin-left: 27px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .header__logo {
+        margin-bottom: 35px;
     }
 }
 
 @media screen and (max-width: 767px) {
     .header__logo {
-        width: 103px;
-        height: 24px;
         margin-left: 27px;
+        margin-bottom: 32px;
     }
 }
 

@@ -2,13 +2,11 @@
 @import url(./__close-button/popup__close-button.css);
 @import url(./__form/popup__form.css);
 @import url(./__text/popup__text.css);
-@import url(./_open/popup_open.css);
-@import url(./_close/popup_close.css);
-@import url(./__background/popup__background.css);
 @import url(./__form-btn/popup__form-btn.css);
 @import url(__form-input/popup__form-input.css);
 
 .popup{
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -17,10 +15,5 @@
     width: 100%;
     height: 100%;
     font-family: 'Inter', Arial, sans-serif;
-}
-
-@media screen and (max-width: 1023px) {
-    .popup {
-        width: 100%;
-    }
+    background-color: rgba(0, 0, 0, 0.8);
 }

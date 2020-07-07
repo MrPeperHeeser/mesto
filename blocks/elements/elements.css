@@ -1,11 +1,9 @@
 @import url(./__element/elements__element.css);
 @import url(./__element-img/elements__element-img.css);
 @import url(./__element-footer/elements__element-footer.css);
-@import url(./__like/elements__like.css);
+@import url(__like-btn/elements__like-btn.css);
 @import url(./__text/elements__text.css);
 @import url(./__list/elements__list.css);
-@import url(__text_hide-on-mobile/elements__text_hide-on-mobile.css);
-@import url(__text_show-on-mobile/elements__text_show-on-mobile.css);
 
 .elements{
     margin: 47px auto 0;
