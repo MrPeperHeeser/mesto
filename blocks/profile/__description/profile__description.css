@@ -12,16 +12,20 @@
     text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 1023px) {
+    .profile__description {
+        font-size: 14px;
+    }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .profile__description {
         width: 250px;
-        font-size: 14px;
     }
 }
 
 @media screen and (max-width: 767px) {
     .profile__description {
-        font-size: 14px;
         line-height: 18px;
         margin: 0;
         width: 280px;

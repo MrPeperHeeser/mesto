@@ -12,12 +12,10 @@ const formElement = document.querySelector('.popup__form');
 
 function togglePopup() {
     popup.classList.toggle('popup_open');
-}
-
-function openPopup() {
-    togglePopup();
-    nameInput.value = profileUsername.textContent;
-    jobInput.value = profileDescription.textContent;
+    if (popup.classList.contains('popup_open')) {
+        nameInput.value = profileUsername.textContent;
+        jobInput.value = profileDescription.textContent;
+    }
 }
 
 function formSubmitHandler(evt) {
@@ -28,6 +26,6 @@ function formSubmitHandler(evt) {
     togglePopup();
 }
 
-openPopupButton.addEventListener('click', openPopup);
+openPopupButton.addEventListener('click', togglePopup);
 closePopupButton.addEventListener('click', togglePopup);
 formElement.addEventListener('submit', formSubmitHandler);
