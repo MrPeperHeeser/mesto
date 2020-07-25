@@ -2,8 +2,10 @@
 @import url(./__element-img/elements__element-img.css);
 @import url(./__element-footer/elements__element-footer.css);
 @import url(__like-btn/elements__like-btn.css);
+@import url(__like-btn/_liked/elements__like-btn_liked.css);
 @import url(./__text/elements__text.css);
 @import url(./__list/elements__list.css);
+@import url(./__remove-btn/elements__remove-btn.css);
 
 .elements{
     margin: 47px auto 0;
