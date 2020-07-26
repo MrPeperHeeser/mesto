@@ -54,38 +54,48 @@ const initialCards = [
     }
 ];
 
-function getCardsListElement() {
-    return cardTemplate.querySelector('.elements__element').cloneNode(true);
+function createCardsListElement(cardName, cardLink) {
+    const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
+    const img = cardElement.querySelector('.elements__element-img');
+    const title = cardElement.querySelector('.elements__text');
+    const likeButton = cardElement.querySelector('.elements__like-btn');
+    const removeCardButton = cardElement.querySelector('.elements__remove-btn');
+
+    likeButton.addEventListener('click', (e) => toggleLikeButton(e));
+    img.addEventListener('click', (e) => toggleOpenPhotoPopup(e));
+    removeCardButton.addEventListener('click', (e) => removeCardsListElement(e));
+
+    img.src = cardLink;
+    img.alt = cardName;
+    title.textContent = cardName;
+
+    return cardElement;
 }
 
 function fillCardsList() {
-    initialCards.map((card, i) => {
-        const cardElement = getCardsListElement();
-        const img = cardElement.querySelector('.elements__element-img');
-        const title = cardElement.querySelector('.elements__text');
-        img.src = card.link;
-        img.alt = card.name;
-        title.textContent = card.name;
+    initialCards.forEach((card) => {
+        const cardElement = createCardsListElement(card.name, card.link);
         elementsList.append(cardElement);
-    })
+    });
 }
 
 function togglePopup(el) {
     el.classList.toggle('popup_open');
 }
 
-function toggleOpenPhotoPopup(el) {
+function toggleOpenPhotoPopup(e) {
+    const el = e.target;
     togglePopup(openPhotoPopup);
     popupImage.src = el.src;
     imagePopupText.textContent = el.alt;
 }
 
-function toggleLikeButton(el) {
-    el.classList.toggle('elements__like-btn_liked')
+function toggleLikeButton(e) {
+    e.target.classList.toggle('elements__like-btn_liked');
 }
 
-function removeCardsListElement(el) {
-    el.remove();
+function removeCardsListElement(e) {
+    e.target.parentElement.remove();
 }
 
 function openEditProfilePopupForm() {
@@ -114,12 +124,7 @@ function editProfileFormSubmitHandler(evt) {
 function addPhotoFormSubmitHandler(evt) {
     evt.preventDefault();
 
-    const cardElement = getCardsListElement();
-    const img = cardElement.querySelector('.elements__element-img');
-    const title = cardElement.querySelector('.elements__text');
-    img.src = linkInput.value;
-    img.alt = nameInput.value;
-    title.textContent = nameInput.value;
+    const cardElement = createCardsListElement(nameInput.value, linkInput.value);
     elementsList.prepend(cardElement);
 
     togglePopup(addPhotoPopup);
