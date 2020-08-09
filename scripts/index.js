@@ -52,8 +52,31 @@ function fillCardsList() {
     });
 }
 
+function closePopupOnOutsideClick(e) {
+  const popup = e.target;
+  const popupContainer = popup.querySelector('.popup__container');
+  const popupImageContainer = popup.querySelector('.popup__image-container');
+  const isInside = popupContainer ? popupContainer.contains(e.target) : popupImageContainer.contains(e.target);
+  if (!isInside) {
+    popup.classList.remove('popup_open');
+    popup.removeEventListener('click', closePopupOnOutsideClick);
+  }
+}
+
+function closePopupOnEscClick(e) {
+  const popup = document.querySelector('.popup_open');
+  if (e.key === 'Escape') {
+    popup.classList.remove('popup_open');
+    document.removeEventListener('keydown', closePopupOnEscClick);
+  }
+}
+
 function togglePopup(el) {
     el.classList.toggle('popup_open');
+    if (el.classList.contains('popup_open')) {
+      el.addEventListener('click', closePopupOnOutsideClick);
+      document.addEventListener('keydown', closePopupOnEscClick);
+    }
 }
 
 function toggleOpenPhotoPopup(e) {
@@ -110,4 +133,5 @@ addPhotoClosePopupButton.addEventListener('click', () => togglePopup(addPhotoPop
 openPhotoClosePopupButton.addEventListener('click', () => togglePopup(openPhotoPopup));
 editProfileForm.addEventListener('submit', editProfileFormSubmitHandler);
 addPhotoForm.addEventListener('submit', addPhotoFormSubmitHandler);
+
 window.addEventListener('load', fillCardsList);

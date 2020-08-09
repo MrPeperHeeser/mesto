@@ -55,9 +55,11 @@
 
         <form action="#" class="popup__form popup__form_edit-profile" method="post" name="editProfileForm">
             <input type="text" class="popup__form-input popup__form-input_username-field" value="Жак-Ив Кусто"
-                   title="username">
+                   title="username" required minlength="2" maxlength="40" id="username-input">
+            <span class='popup__form-input-error' id='username-input-error'></span>
             <input type="text" class="popup__form-input popup__form-input_description-field"
-                   value="Исследователь океана" title="description">
+                   value="Исследователь океана" title="description" required minlength="2" maxlength="200" id="description-input">
+            <span class='popup__form-input-error' id='description-input-error'></span>
             <button type="submit" class="popup__form-btn">
                 Сохранить
             </button>
@@ -72,9 +74,11 @@
 
         <form action="#" class="popup__form popup__form_add-photo" method="post" name="addPhotoForm">
             <input type="text" class="popup__form-input popup__form-input_name-field" placeholder="Название"
-                   title="name">
-            <input type="text" class="popup__form-input popup__form-input_link-field"
-                   placeholder="Ссылка на картинку" title="link">
+                   title="name" required minlength="2" maxlength="30" id="name-input">
+            <span class='popup__form-input-error' id='name-input-error'></span>
+            <input type="url" required class="popup__form-input popup__form-input_link-field"
+                   placeholder="Ссылка на картинку" title="link" id="link-input">
+            <span class='popup__form-input-error' id='link-input-error'></span>
             <button type="submit" class="popup__form-btn">
                 Создать
             </button>
@@ -92,6 +96,7 @@
 </div>
 
 <script src="scripts/index.js"></script>
+<script src="scripts/validate.js"></script>
 <script src="scripts/initial-cards.js"></script>
 </body>
 </html>
