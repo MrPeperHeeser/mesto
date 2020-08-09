@@ -53,29 +53,39 @@ function fillCardsList() {
 }
 
 function closePopupOnOutsideClick(e) {
-  const popup = e.target;
-  const popupContainer = popup.querySelector('.popup__container');
-  const popupImageContainer = popup.querySelector('.popup__image-container');
-  const isInside = popupContainer ? popupContainer.contains(e.target) : popupImageContainer.contains(e.target);
-  if (!isInside) {
-    popup.classList.remove('popup_open');
-    popup.removeEventListener('click', closePopupOnOutsideClick);
-  }
+    const el = e.target;
+    if (el.classList.contains('popup__close-button')) {
+        return;
+    }
+    const popupContainer = el.querySelector('.popup__container');
+    const popupImageContainer = el.querySelector('.popup__image-container');
+    let isInside;
+    if (popupContainer) {
+        isInside = popupContainer.contains(el);
+    } else if (popupImageContainer) {
+        isInside = popupImageContainer.contains(el);
+    } else {
+        isInside = false;
+    }
+    if (!isInside) {
+        el.classList.remove('popup_open');
+        el.removeEventListener('click', closePopupOnOutsideClick);
+    }
 }
 
 function closePopupOnEscClick(e) {
-  const popup = document.querySelector('.popup_open');
-  if (e.key === 'Escape') {
-    popup.classList.remove('popup_open');
-    document.removeEventListener('keydown', closePopupOnEscClick);
-  }
+    const popup = document.querySelector('.popup_open');
+    if (e.key === 'Escape') {
+        popup.classList.remove('popup_open');
+        document.removeEventListener('keydown', closePopupOnEscClick);
+    }
 }
 
 function togglePopup(el) {
     el.classList.toggle('popup_open');
     if (el.classList.contains('popup_open')) {
-      el.addEventListener('click', closePopupOnOutsideClick);
-      document.addEventListener('keydown', closePopupOnEscClick);
+        el.addEventListener('click', closePopupOnOutsideClick);
+        document.addEventListener('keydown', closePopupOnEscClick);
     }
 }
 
@@ -95,18 +105,33 @@ function removeCardsListElement(e) {
 }
 
 function openEditProfilePopupForm() {
+    const inputList = Array.from(editProfileForm.querySelectorAll('.' + params.formInputClass));
+    const buttonElement = editProfileForm.querySelector('.' + params.formButtonClass);
+
     togglePopup(editProfilePopup);
     if (editProfilePopup.classList.contains('popup_open')) {
         userNameInput.value = profileUsername.textContent;
         jobInput.value = profileDescription.textContent;
     }
+
+    toggleButtonState(inputList, buttonElement, params);
+    inputList.forEach((inputElement) => {
+        hideInputError(editProfileForm, inputElement, params);
+    });
 }
 
 function openAddPhotoPopupForm() {
-    togglePopup(addPhotoPopup);
+    const inputList = Array.from(addPhotoForm.querySelectorAll('.' + params.formInputClass));
+    const buttonElement = addPhotoForm.querySelector('.' + params.formButtonClass);
 
+    togglePopup(addPhotoPopup);
     nameInput.value = '';
     linkInput.value = '';
+
+    toggleButtonState(inputList, buttonElement, params);
+    inputList.forEach((inputElement) => {
+        hideInputError(addPhotoForm, inputElement, params);
+    });
 }
 
 function editProfileFormSubmitHandler(evt) {
