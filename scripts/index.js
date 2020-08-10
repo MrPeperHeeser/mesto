@@ -70,6 +70,7 @@ function closePopupOnOutsideClick(e) {
     if (!isInside) {
         el.classList.remove('popup_open');
         el.removeEventListener('click', closePopupOnOutsideClick);
+        document.removeEventListener('keydown', closePopupOnEscClick);
     }
 }
 
@@ -77,6 +78,7 @@ function closePopupOnEscClick(e) {
     const popup = document.querySelector('.popup_open');
     if (e.key === 'Escape') {
         popup.classList.remove('popup_open');
+        popup.removeEventListener('click', closePopupOnOutsideClick);
         document.removeEventListener('keydown', closePopupOnEscClick);
     }
 }
