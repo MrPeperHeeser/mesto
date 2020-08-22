@@ -1,4 +1,4 @@
-import {togglePopup} from './popups.js';
+import {togglePopup} from './utils.js';
 
 export const openPhotoPopup = document.querySelector('.popup_open-photo');
 

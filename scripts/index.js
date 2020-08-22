@@ -1,8 +1,7 @@
 import {Card, openPhotoPopup} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
-import initialCards from "./initial-cards.js";
-import validationParams from "./validation-params.js";
-import {togglePopup} from "./popups.js";
+import {initialCards, validationParams} from "./cconstants.js";
+import {togglePopup} from "./utils.js";
 
 const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddPhotoPopupButton = document.querySelector('.profile__add-button');

@@ -20,7 +20,6 @@ export class FormValidator {
   };
 
   _checkInputValidity = (inputElement) => {
-    console.log('dfgfdg')
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
@@ -44,11 +43,15 @@ export class FormValidator {
 
   _getInputList = () => {
     return Array.from(this._formElement.querySelectorAll('.' + this._params.formInputClass));
-  }
+  };
+
+  _getSubmitFormButton = () => {
+    return this._formElement.querySelector('.' + this._params.formButtonClass);
+  };
 
   _setEventListeners = () => {
     const inputList = this._getInputList();
-    const buttonElement = this._formElement.querySelector('.' + this._params.formButtonClass);
+    const buttonElement = this._getSubmitFormButton();
     this._toggleButtonState(inputList, buttonElement, this._params);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
@@ -64,6 +67,8 @@ export class FormValidator {
 
   resetValidation = () => {
     const inputList = this._getInputList();
+    const buttonElement = this._getSubmitFormButton();
+    this._toggleButtonState(inputList, buttonElement, this._params);
     inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
