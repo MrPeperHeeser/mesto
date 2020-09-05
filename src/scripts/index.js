@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import {Card, openPhotoPopup} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
 import {initialCards, validationParams} from "./cconstants.js";

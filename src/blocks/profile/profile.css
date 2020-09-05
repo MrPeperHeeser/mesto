@@ -1,10 +1,10 @@
-@import url(./__profile-info/profile__info.css);
-@import url(./__add-button/profile__add-button.css);
-@import url(./__avatar/profile__avatar.css);
+@import url(__profile-info/profile__info.css);
+@import url(__add-button/profile__add-button.css);
+@import url(__avatar/profile__avatar.css);
 @import url(__description/profile__description.css);
-@import url(./__edit-button/profile__edit-button.css);
-@import url(./__username/profile__username.css);
-@import url(./__username-text/profile__username-text.css);
+@import url(__edit-button/profile__edit-button.css);
+@import url(__username/profile__username.css);
+@import url(__username-text/profile__username-text.css);
 
 .profile {
     display: flex;
