@@ -33,3 +33,20 @@ export const validationParams = {
   formInputClass: 'popup__form-input',
   formClass: 'popup__form'
 };
+
+export const imagePopupText = document.querySelector('.popup__image-text');
+export const popupImage = document.querySelector('.popup__image');
+
+export const userNameInput = document.querySelector('.popup__form-input_username-field');
+export const jobInput = document.querySelector('.popup__form-input_description-field');
+
+export const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
+export const openAddPhotoPopupButton = document.querySelector('.profile__add-button');
+
+export const editProfileForm = document.querySelector('.popup__form_edit-profile');
+export const addPhotoForm = document.querySelector('.popup__form_add-photo');
+
+export const elementsList = document.querySelector('.elements__list');
+export const elementsListSelector = '.elements__list';
+
+export const CARD_ELEMENT_TEMPLATE_NAME = '#card';
