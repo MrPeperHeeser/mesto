@@ -46,7 +46,19 @@ export const openAddPhotoPopupButton = document.querySelector('.profile__add-but
 export const editProfileForm = document.querySelector('.popup__form_edit-profile');
 export const addPhotoForm = document.querySelector('.popup__form_add-photo');
 
-export const elementsList = document.querySelector('.elements__list');
 export const elementsListSelector = '.elements__list';
+export const elementsElementSelector = '.elements__element';
+export const elementLikeButtonSelector = '.elements__like-btn';
+export const elementLikedButtonClass = 'elements__like-btn_liked';
+export const elementRemoveButtonSelecctor = '.elements__remove-btn';
+export const elementImageSelector = '.elements__element-img';
+export const elementTextSelector = '.elements__text';
 
 export const CARD_ELEMENT_TEMPLATE_NAME = '#card';
+
+export const popupOpenClass = 'popup_open';
+export const popupOpenSelector = '.popup_open';
+export const popupCloseButtonSelector = '.popup__close-button';
+export const popupCloseButtonClass = 'popup__close-button';
+export const popupContainerSelector = '.popup__container';
+export const popupImageContainerSelector = '.popup__image-container';

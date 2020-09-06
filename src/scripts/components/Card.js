@@ -1,9 +1,18 @@
+import {
+  elementsElementSelector,
+  elementLikeButtonSelector,
+  elementLikedButtonClass,
+  elementImageSelector,
+  elementTextSelector,
+  elementRemoveButtonSelecctor
+} from '../utils/constants.js';
+
 export default class Card {
 
-  constructor(name, link, selector, handleCardClick) {
+  constructor(data, selector, handleCardClick) {
     this._selector = selector;
-    this._name = name;
-    this._link = link;
+    this._name = data.name;
+    this._link = data.link;
     this._handleCardClick = handleCardClick;
   }
 
@@ -11,12 +20,12 @@ export default class Card {
     return document
       .querySelector(this._selector)
       .content
-      .querySelector('.elements__element')
+      .querySelector(elementsElementSelector)
       .cloneNode(true);
   };
 
   _toggleLikeButton = (e) => {
-    e.target.classList.toggle('elements__like-btn_liked');
+    e.target.classList.toggle(elementLikedButtonClass);
   };
 
   _removeCardsListElement = (e) => {
@@ -24,9 +33,9 @@ export default class Card {
   };
 
   _setEventListeners = () => {
-    const img = this._element.querySelector('.elements__element-img');
-    const likeButton = this._element.querySelector('.elements__like-btn');
-    const removeCardButton = this._element.querySelector('.elements__remove-btn');
+    const img = this._element.querySelector(elementImageSelector);
+    const likeButton = this._element.querySelector(elementLikeButtonSelector);
+    const removeCardButton = this._element.querySelector(elementRemoveButtonSelecctor);
 
     likeButton.addEventListener('click', (e) => this._toggleLikeButton(e));
     img.addEventListener('click', this._handleCardClick);
@@ -37,8 +46,8 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    const img = this._element.querySelector('.elements__element-img');
-    const title = this._element.querySelector('.elements__text');
+    const img = this._element.querySelector(elementImageSelector);
+    const title = this._element.querySelector(elementTextSelector);
 
     img.src = this._link;
     img.alt = this._name;
