@@ -19,18 +19,54 @@ import {
   CARD_ELEMENT_TEMPLATE_NAME
 } from "../scripts/utils/constants.js";
 
+const imagePopup = new PopupWithImage('.popup_open-photo');
+
+const createCard = (item) => {
+  return new Card(
+    item,
+    CARD_ELEMENT_TEMPLATE_NAME,
+    () => {
+      imagePopup.open({src: item.link, name: item.name});
+    }
+  );
+};
+
+const userInfo = new UserInfo({userNameSelector: '.profile__username-text', userDescriptionSelector: '.profile__description'});
+const popupEditProfileForm = new PopupWithForm(
+  '.popup_edit-profile',
+  (e) => {
+    e.preventDefault();
+    userInfo.setUserInfo({
+      userName: userNameInput.value,
+      userDescription: jobInput.value
+    });
+    popupEditProfileForm.close();
+  }
+);
+
+const popupAddPhotoForm = new PopupWithForm(
+  '.popup_add-photo',
+  (e) => {
+    e.preventDefault();
+    const item = {
+      name: popupAddPhotoForm.getInputValueByClass('popup__form-input_name-field'),
+      link: popupAddPhotoForm.getInputValueByClass('popup__form-input_link-field')
+    };
+    const card = createCard(item);
+    const cardElement = card.generateCard();
+    cardsList.addItem(cardElement, true);
+    popupAddPhotoForm.close();
+  }
+);
+
+const editProfileFormValidator = new FormValidator(validationParams, editProfileForm);
+const addPhotoFormValidator = new FormValidator(validationParams, addPhotoForm);
+
 const cardsList = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        item,
-        CARD_ELEMENT_TEMPLATE_NAME,
-        () => {
-          const popup = new PopupWithImage('.popup_open-photo');
-          popup.open({src: item.link, name: item.name});
-        }
-      );
+      const card = createCard(item);
       const cardElement = card.generateCard();
       cardsList.addItem(cardElement, false);
     }
@@ -38,76 +74,28 @@ const cardsList = new Section(
   elementsListSelector
 );
 
-const userInfo = new UserInfo({userNameSelector: '.profile__username-text', userDescriptionSelector: '.profile__description'});
-
 function openEditProfilePopupForm() {
-  const popup = new PopupWithForm(
-    '.popup_edit-profile',
-    (e) => {
-      e.preventDefault();
-      userInfo.setUserInfo({
-        userName: userNameInput.value,
-        userDescription: jobInput.value
-      });
-      popup.close();
-    }
-  );
   const {userName, userDescription} = userInfo.getUserInfo();
   userNameInput.value = userName;
   jobInput.value = userDescription;
-  popup.open();
+  popupEditProfileForm.open();
 
-  const formValidator = new FormValidator(validationParams, editProfileForm);
-  formValidator.resetValidation();
+  editProfileFormValidator.resetValidation();
 }
 
 function openAddPhotoPopupForm() {
-  const popup = new PopupWithForm(
-    '.popup_add-photo',
-    (e) => {
-      e.preventDefault();
-      const name = popup.getInputValueByClass('popup__form-input_name-field');
-      const link = popup.getInputValueByClass('popup__form-input_link-field');
-      const card = new Card(
-        {
-          name: name,
-          link: link
-        },
-        CARD_ELEMENT_TEMPLATE_NAME,
-        () => {
-          const popup = new PopupWithImage('.popup_open-photo');
-          popup.open({src: link, name: name});
-        }
-      );
-      const cardElement = card.generateCard();
-      cardsList.addItem(cardElement, true);
-      popup.close();
-    }
-  );
-  popup.open();
+  popupAddPhotoForm.open();
 
-  const formValidator = new FormValidator(validationParams, addPhotoForm);
-  formValidator.resetValidation();
+  addPhotoFormValidator.resetValidation();
 }
 
 function fillCardsList() {
   cardsList.renderItems();
 }
 
-function enableValidations() {
-  const formList = Array.from(document.querySelectorAll('.' + validationParams.formClass));
-  formList.forEach((formElement) => {
-    const formValidator = new FormValidator(validationParams, formElement);
-    formValidator.enableValidation();
-  });
-}
-
-function init() {
-  fillCardsList();
-  enableValidations();
-}
+fillCardsList();
+editProfileFormValidator.enableValidation();
+addPhotoFormValidator.enableValidation();
 
 openEditProfilePopupButton.addEventListener('click', openEditProfilePopupForm);
 openAddPhotoPopupButton.addEventListener('click', openAddPhotoPopupForm);
-
-window.addEventListener('load', init);

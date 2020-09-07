@@ -14,6 +14,8 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
+    this._toggleLikeButton = this._toggleLikeButton.bind(this);
+    this._removeCardsListElement = this._removeCardsListElement.bind(this);
   }
 
   _getTemplate = () => {
@@ -24,12 +26,13 @@ export default class Card {
       .cloneNode(true);
   };
 
-  _toggleLikeButton = (e) => {
-    e.target.classList.toggle(elementLikedButtonClass);
+  _toggleLikeButton = () => {
+    this._element.querySelector(elementLikeButtonSelector).classList.toggle(elementLikedButtonClass);
   };
 
-  _removeCardsListElement = (e) => {
-    e.target.parentElement.remove();
+  _removeCardsListElement = () => {
+    this._element.remove();
+    this._element = null;
   };
 
   _setEventListeners = () => {
@@ -37,9 +40,9 @@ export default class Card {
     const likeButton = this._element.querySelector(elementLikeButtonSelector);
     const removeCardButton = this._element.querySelector(elementRemoveButtonSelecctor);
 
-    likeButton.addEventListener('click', (e) => this._toggleLikeButton(e));
+    likeButton.addEventListener('click', this._toggleLikeButton);
     img.addEventListener('click', this._handleCardClick);
-    removeCardButton.addEventListener('click', (e) => this._removeCardsListElement(e));
+    removeCardButton.addEventListener('click', this._removeCardsListElement);
   };
 
   generateCard() {

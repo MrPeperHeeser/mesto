@@ -62,3 +62,8 @@ export const popupCloseButtonSelector = '.popup__close-button';
 export const popupCloseButtonClass = 'popup__close-button';
 export const popupContainerSelector = '.popup__container';
 export const popupImageContainerSelector = '.popup__image-container';
+
+export const popupContainerSelectors = [
+  popupContainerSelector,
+  popupImageContainerSelector
+];

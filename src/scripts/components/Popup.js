@@ -3,8 +3,7 @@ import {
   popupOpenSelector,
   popupCloseButtonSelector,
   popupCloseButtonClass,
-  popupContainerSelector,
-  popupImageContainerSelector
+  popupContainerSelectors
 } from '../utils/constants.js';
 
 export default class Popup {
@@ -27,16 +26,13 @@ export default class Popup {
     if (!openedPopup) {
       return;
     }
-    const popupContainer = openedPopup.querySelector(popupContainerSelector);
-    const popupImageContainer = openedPopup.querySelector(popupImageContainerSelector);
-    let isInside;
-    if (popupContainer) {
-      isInside = popupContainer.contains(el);
-    } else if (popupImageContainer) {
-      isInside = popupImageContainer.contains(el);
-    } else {
-      isInside = false;
-    }
+    let isInside = false;
+    popupContainerSelectors.forEach((popupSelector) => {
+      const container = openedPopup.querySelector(popupSelector);
+      if (container && container.contains(el)) {
+        isInside = true;
+      }
+    });
     if (!isInside) {
       this.close();
     }
@@ -57,18 +53,17 @@ export default class Popup {
   open() {
     if (!this._container.classList.contains(popupOpenClass)) {
       this.setEventListeners();
-      this._container.classList.toggle(popupOpenClass);
+      this._container.classList.add(popupOpenClass);
     }
   }
 
   close() {
-    console.log("test");
     if (this._container.classList.contains(popupOpenClass)) {
       this._container.removeEventListener('click', this._handleOnOutsideClick);
       document.removeEventListener('keydown', this._handleEscClose);
       this._closeButtonElement.removeEventListener('click', this.close);
 
-      this._container.classList.toggle(popupOpenClass);
+      this._container.classList.remove(popupOpenClass);
     }
   }
 
