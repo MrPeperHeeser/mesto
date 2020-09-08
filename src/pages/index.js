@@ -49,8 +49,8 @@ const popupAddPhotoForm = new PopupWithForm(
   (e) => {
     e.preventDefault();
     const item = {
-      name: popupAddPhotoForm.getInputValueByClass('popup__form-input_name-field'),
-      link: popupAddPhotoForm.getInputValueByClass('popup__form-input_link-field')
+      name: popupAddPhotoForm.getValueByInputTitle('name'),
+      link: popupAddPhotoForm.getValueByInputTitle('link')
     };
     const card = createCard(item);
     const cardElement = card.generateCard();

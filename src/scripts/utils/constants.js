@@ -57,13 +57,4 @@ export const elementTextSelector = '.elements__text';
 export const CARD_ELEMENT_TEMPLATE_NAME = '#card';
 
 export const popupOpenClass = 'popup_open';
-export const popupOpenSelector = '.popup_open';
 export const popupCloseButtonSelector = '.popup__close-button';
-export const popupCloseButtonClass = 'popup__close-button';
-export const popupContainerSelector = '.popup__container';
-export const popupImageContainerSelector = '.popup__image-container';
-
-export const popupContainerSelectors = [
-  popupContainerSelector,
-  popupImageContainerSelector
-];

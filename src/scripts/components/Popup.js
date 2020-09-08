@@ -1,9 +1,6 @@
 import {
   popupOpenClass,
-  popupOpenSelector,
-  popupCloseButtonSelector,
-  popupCloseButtonClass,
-  popupContainerSelectors
+  popupCloseButtonSelector
 } from '../utils/constants.js';
 
 export default class Popup {
@@ -17,23 +14,7 @@ export default class Popup {
   }
 
   _handleOnOutsideClick(e) {
-    const el = e.target;
-    if (el.classList.contains(popupCloseButtonClass)) {
-      return;
-    }
-
-    const openedPopup = document.querySelector(popupOpenSelector);
-    if (!openedPopup) {
-      return;
-    }
-    let isInside = false;
-    popupContainerSelectors.forEach((popupSelector) => {
-      const container = openedPopup.querySelector(popupSelector);
-      if (container && container.contains(el)) {
-        isInside = true;
-      }
-    });
-    if (!isInside) {
+    if (e.target.classList.contains('popup')) {
       this.close();
     }
   }

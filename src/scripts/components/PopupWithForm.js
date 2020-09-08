@@ -20,7 +20,7 @@ export default class PopupWithForm extends Popup {
     this._inputs.forEach((input) => {
       inputsValues.push(
         {
-          classes: input.classList,
+          title: input.title,
           value: input.value
         }
       )
@@ -28,9 +28,9 @@ export default class PopupWithForm extends Popup {
     return inputsValues;
   }
 
-  getInputValueByClass(inputClassName) {
+  getValueByInputTitle(inputTitle) {
     const inputsValues = this._getInputValues();
-    const input = inputsValues.filter((inputWithValue) => inputWithValue.classes.contains(inputClassName));
+    const input = inputsValues.filter((inputWithValue) => inputWithValue.title === inputTitle);
     return input && input.length > 0 ? input[0].value : '';
   }
 
