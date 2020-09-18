@@ -5,10 +5,12 @@ import {
 
 export default class PopupWithForm extends Popup {
 
-  constructor(popupSelector, submitCallback) {
+  constructor(popupSelector, popupSubmitFormSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
     this._inputs = this._getInputs();
+    this._submitButtonContainer = document.querySelector(popupSubmitFormSelector);
+    this._defaultSubmitButtonCapture = this._submitButtonContainer.textContent;
   }
 
   _getInputs() {
@@ -39,8 +41,13 @@ export default class PopupWithForm extends Popup {
     this._container.addEventListener('submit', this._submitCallback);
   }
 
+  setWaiting() {
+    this._submitButtonContainer.textContent = 'Сохранение...';
+  }
+
   close() {
     super.close();
+    this._submitButtonContainer.value = this._defaultSubmitButtonCapture;
     this._inputs.forEach((input) => {
       input.value = '';
     });

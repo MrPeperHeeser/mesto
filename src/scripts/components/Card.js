@@ -9,13 +9,14 @@ import {
 
 export default class Card {
 
-  constructor(data, selector, handleCardClick) {
+  constructor({data, selector, handleCardClick, handleDeleteClick}) {
     this._selector = selector;
     this._name = data.name;
     this._link = data.link;
+    this._likesCount = data.likes ? data.likes.length : 0;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
     this._toggleLikeButton = this._toggleLikeButton.bind(this);
-    this._removeCardsListElement = this._removeCardsListElement.bind(this);
   }
 
   _getTemplate = () => {
@@ -30,9 +31,8 @@ export default class Card {
     this._element.querySelector(elementLikeButtonSelector).classList.toggle(elementLikedButtonClass);
   };
 
-  _removeCardsListElement = () => {
-    this._element.remove();
-    this._element = null;
+  _setIsLiked = () => {
+    this._element.querySelector(elementLikeButtonSelector).classList.add(elementLikedButtonClass);
   };
 
   _setEventListeners = () => {
@@ -42,7 +42,7 @@ export default class Card {
 
     likeButton.addEventListener('click', this._toggleLikeButton);
     img.addEventListener('click', this._handleCardClick);
-    removeCardButton.addEventListener('click', this._removeCardsListElement);
+    removeCardButton.addEventListener('click', this._handleDeleteClick);
   };
 
   generateCard() {
@@ -51,7 +51,13 @@ export default class Card {
 
     const img = this._element.querySelector(elementImageSelector);
     const title = this._element.querySelector(elementTextSelector);
+    const likesCountElement = this._element.querySelector('.elements__like-count');
 
+    if (this._likesCount > 0) {
+      this._setIsLiked();
+    }
+
+    likesCountElement.textContent = this._likesCount;
     img.src = this._link;
     img.alt = this._name;
     title.textContent = this._name;
