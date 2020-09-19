@@ -89,13 +89,13 @@
     </div>
 </div>
 
-<div class="popup popup_edit_avatar">
+<div class="popup popup_edit-avatar">
     <div class="popup__container popup__container_align-items_start">
         <h3 class="popup__text">Обновить аватар</h3>
 
         <form action="#" class="popup__form popup__form_edit-avatar" method="post" name="editAvatarForm">
             <input type="url" required class="popup__form-input popup__form-input_avatar-field"
-                   placeholder="Ссылка на аватар" title="link" id="avatar-input">
+                   placeholder="Ссылка на аватар" title="avatar-link" id="avatar-input">
             <span class='popup__form-input-error' id='avatar-input-error'></span>
             <button type="submit" class="popup__form-btn">
                 Сохранить
@@ -110,7 +110,7 @@
         <h3 class="popup__text">Вы уверены?</h3>
 
         <form action="#" class="popup__form popup__form_delete-photo" method="post" name="deletePhotoForm">
-            <input type="hidden" required title="id">
+            <input type="hidden" title="id">
             <button type="submit" class="popup__form-btn">
                 Да
             </button>

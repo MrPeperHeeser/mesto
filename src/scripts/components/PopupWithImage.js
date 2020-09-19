@@ -1,7 +1,7 @@
 import Popup from './Popup.js';
 import {
-  imagePopupText,
-  popupImage
+  imagePopupTextContainer,
+  popupImageContainer
 } from "../utils/constants.js";
 
 export default class PopupWithImage extends Popup {
@@ -11,16 +11,16 @@ export default class PopupWithImage extends Popup {
   }
 
   open({src, name}) {
-    popupImage.src = src;
-    popupImage.alt = name;
-    imagePopupText.textContent = name;
+    popupImageContainer.src = src;
+    popupImageContainer.alt = name;
+    imagePopupTextContainer.textContent = name;
     super.open();
   }
 
   close() {
-    popupImage.src = '';
-    popupImage.alt = '';
-    imagePopupText.textContent = '';
+    popupImageContainer.src = '';
+    popupImageContainer.alt = '';
+    imagePopupTextContainer.textContent = '';
     super.close();
   }
 

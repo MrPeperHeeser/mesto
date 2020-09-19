@@ -9,14 +9,16 @@ import UserInfo from '../scripts/components/UserInfo';
 import Api from '../scripts/components/Api.js';
 import {
   validationParams,
-  userNameInput,
-  jobInput,
+  userNameInputContainer,
+  jobInputContainer,
   openEditProfilePopupButton,
   openAddPhotoPopupButton,
-  editProfileForm,
-  addPhotoForm,
+  editProfileFormContainer,
+  editProfileAvatarFormContainer,
+  addPhotoFormContainer,
+  profileAvatarContainer,
   elementsListSelector,
-  popupSumbitButtonSelector,
+  popupSubmitButtonSelector,
   CARD_ELEMENT_TEMPLATE_NAME
 } from "../scripts/utils/constants.js";
 
@@ -32,22 +34,27 @@ const api = new Api(
 
 const imagePopup = new PopupWithImage('.popup_open-photo');
 
-let cardsList;
-
 const popupDeleteCardForm = new PopupWithForm(
   '.popup_delete-photo',
-  popupSumbitButtonSelector,
+  popupSubmitButtonSelector,
   (e) => {
     e.preventDefault();
     popupDeleteCardForm.setWaiting();
     api.deleteCard({
-      id: popupAddPhotoForm.getValueByInputTitle('id')
+      id: popupDeleteCardForm.getInputByInputTitle('id').value
     })
+      .then(
+        () => {
+          fetchCardItems();
+        }
+      )
+      .catch(e => console.log(e))
+      .finally(() => popupDeleteCardForm.close())
   }
 );
 
 const createCard = (item) => {
-  return new Card(
+  const card = new Card(
     {
       data: item,
       selector: CARD_ELEMENT_TEMPLATE_NAME,
@@ -55,11 +62,45 @@ const createCard = (item) => {
         imagePopup.open({src: item.link, name: item.name});
       },
       handleDeleteClick: () => {
-
+        popupDeleteCardForm.getInputByInputTitle('id').value = item._id;
+        popupDeleteCardForm.open();
+      },
+      handleLikeClick: () => {
+        api.toggleLikeOnCard({
+          cardId: item._id,
+          needLike: !card.isAlreadyLikedByUser(userInfo.getUserId())
+        })
+          .then(
+            (res) => {
+              card.setData(res);
+              card.renderElement(userInfo.getUserId())
+            }
+          )
+          .catch(e => console.log(e))
       }
     }
   );
+  return card;
 };
+
+function fetchCardItems() {
+  api.getInitialCards().then(
+    (res) => {
+      const cardsList = new Section(
+        {
+          data: res,
+          renderer: (item) => {
+            const card = createCard(item);
+            const cardElement = card.generateCard(userInfo.getUserId());
+            cardsList.addItem(cardElement, false);
+          }
+        },
+        elementsListSelector
+      );
+      cardsList.renderItems();
+    }
+  ).catch(e => console.log(e));
+}
 
 const userInfo = new UserInfo(
   {
@@ -68,16 +109,17 @@ const userInfo = new UserInfo(
     userAvatarSelector: '.profile__avatar'
   }
 );
+
 const popupEditProfileForm = new PopupWithForm(
   '.popup_edit-profile',
-  popupSumbitButtonSelector,
+  popupSubmitButtonSelector,
   (e) => {
     e.preventDefault();
     popupEditProfileForm.setWaiting();
     api.updateUserInfo(
       {
-        name: userNameInput.value,
-        about: jobInput.value
+        name: userNameInputContainer.value,
+        about: jobInputContainer.value
       }
     )
       .then(
@@ -95,23 +137,42 @@ const popupEditProfileForm = new PopupWithForm(
   }
 );
 
+const popupEditProfileAvatarForm = new PopupWithForm(
+  '.popup_edit-avatar',
+  popupSubmitButtonSelector,
+  (e) => {
+    e.preventDefault();
+    popupEditProfileAvatarForm.setWaiting();
+    api.updateAvatar(
+      {
+        avatarLink: popupEditProfileAvatarForm.getInputByInputTitle('avatar-link').value
+      }
+    )
+      .then(
+        (res) => userInfo.setAvatar({
+          avatarLink: res.avatar
+        })
+      )
+      .catch(e => console.log(e))
+      .finally(() => popupEditProfileAvatarForm.close())
+  }
+);
+
 const popupAddPhotoForm = new PopupWithForm(
   '.popup_add-photo',
-  popupSumbitButtonSelector,
+  popupSubmitButtonSelector,
   (e) => {
     e.preventDefault();
     popupAddPhotoForm.setWaiting();
     api.addNewCard(
       {
-        name: popupAddPhotoForm.getValueByInputTitle('name'),
-        link: popupAddPhotoForm.getValueByInputTitle('link')
+        name: popupAddPhotoForm.getInputByInputTitle('name').value,
+        link: popupAddPhotoForm.getInputByInputTitle('link').value
       }
     )
       .then(
-        (res) => {
-          const card = createCard(res);
-          const cardElement = card.generateCard();
-          cardsList.addItem(cardElement, true);
+        () => {
+          fetchCardItems();
         }
       )
       .catch(e => console.log())
@@ -121,25 +182,9 @@ const popupAddPhotoForm = new PopupWithForm(
   }
 );
 
-const editProfileFormValidator = new FormValidator(validationParams, editProfileForm);
-const addPhotoFormValidator = new FormValidator(validationParams, addPhotoForm);
-
-api.getInitialCards().then(
-  (res) => {
-    cardsList = new Section(
-      {
-        data: res,
-        renderer: (item) => {
-          const card = createCard(item);
-          const cardElement = card.generateCard();
-          cardsList.addItem(cardElement, false);
-        }
-      },
-      elementsListSelector
-    );
-    cardsList.renderItems();
-  }
-).catch(e => console.log(e));
+const editProfileFormValidator = new FormValidator(validationParams, editProfileFormContainer);
+const editProfileAvatarFormValidator = new FormValidator(validationParams, editProfileAvatarFormContainer);
+const addPhotoFormValidator = new FormValidator(validationParams, addPhotoFormContainer);
 
 api.getUserInfo().then(
   (res) => {
@@ -154,21 +199,28 @@ api.getUserInfo().then(
 
 function openEditProfilePopupForm() {
   const {userName, userDescription} = userInfo.getUserInfo();
-  userNameInput.value = userName;
-  jobInput.value = userDescription;
+  userNameInputContainer.value = userName;
+  jobInputContainer.value = userDescription;
   popupEditProfileForm.open();
-
   editProfileFormValidator.resetValidation();
 }
 
 function openAddPhotoPopupForm() {
   popupAddPhotoForm.open();
-
   addPhotoFormValidator.resetValidation();
 }
 
+function openEditProfileAvatarPopupForm() {
+  popupEditProfileAvatarForm.open();
+  editProfileAvatarFormValidator.resetValidation();
+}
+
+fetchCardItems();
+
 editProfileFormValidator.enableValidation();
 addPhotoFormValidator.enableValidation();
+editProfileAvatarFormValidator.enableValidation();
 
 openEditProfilePopupButton.addEventListener('click', openEditProfilePopupForm);
+profileAvatarContainer.addEventListener('click', openEditProfileAvatarPopupForm);
 openAddPhotoPopupButton.addEventListener('click', openAddPhotoPopupForm);

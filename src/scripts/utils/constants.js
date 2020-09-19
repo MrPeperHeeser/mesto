@@ -7,27 +7,31 @@ export const validationParams = {
   formClass: 'popup__form'
 };
 
-export const popupSumbitButtonSelector = '.popup__form-btn';
+export const popupSubmitButtonSelector = '.popup__form-btn';
 
-export const imagePopupText = document.querySelector('.popup__image-text');
-export const popupImage = document.querySelector('.popup__image');
+export const imagePopupTextContainer = document.querySelector('.popup__image-text');
+export const popupImageContainer = document.querySelector('.popup__image');
 
-export const userNameInput = document.querySelector('.popup__form-input_username-field');
-export const jobInput = document.querySelector('.popup__form-input_description-field');
+export const userNameInputContainer = document.querySelector('.popup__form-input_username-field');
+export const jobInputContainer = document.querySelector('.popup__form-input_description-field');
+export const profileAvatarContainer = document.querySelector('.profile__avatar');
 
 export const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
 export const openAddPhotoPopupButton = document.querySelector('.profile__add-button');
 
-export const editProfileForm = document.querySelector('.popup__form_edit-profile');
-export const addPhotoForm = document.querySelector('.popup__form_add-photo');
+export const editProfileFormContainer = document.querySelector('.popup__form_edit-profile');
+export const editProfileAvatarFormContainer = document.querySelector('.popup__form_edit-avatar');
+export const addPhotoFormContainer = document.querySelector('.popup__form_add-photo');
 
 export const elementsListSelector = '.elements__list';
 export const elementsElementSelector = '.elements__element';
 export const elementLikeButtonSelector = '.elements__like-btn';
 export const elementLikedButtonClass = 'elements__like-btn_liked';
-export const elementRemoveButtonSelecctor = '.elements__remove-btn';
+export const elementRemoveButtonSelector = '.elements__remove-btn';
+export const elementRemoveButtonActiveClass = 'elements__remove-btn_active';
 export const elementImageSelector = '.elements__element-img';
 export const elementTextSelector = '.elements__text';
+export const elementLikesCountSelector = '.elements__like-count';
 
 export const CARD_ELEMENT_TEMPLATE_NAME = '#card';
 
@@ -36,5 +40,7 @@ export const popupCloseButtonSelector = '.popup__close-button';
 
 export const urlParts = {
   cards: '/cards',
-  userInfo: '/users/me'
+  likes: '/likes',
+  userInfo: '/users/me',
+  avatar: '/avatar'
 };
