@@ -14,6 +14,11 @@ export default class Section {
   }
 
   renderItems() {
+    const childLis = Array.from(this._container.getElementsByTagName('li'));
+    childLis.forEach(
+      (li) => {
+        this._container.removeChild(li)
+      });
     this._renderedItems.forEach(item => {
       this._renderer(item);
     });

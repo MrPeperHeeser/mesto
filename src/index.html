@@ -14,13 +14,13 @@
     <main class="content">
 
         <section class="profile">
-            <img class="profile__avatar" src="images/profile/avatar.png" alt="Аватар">
+            <img class="profile__avatar" alt="Аватар">
             <div class="profile__info">
                 <div class="profile__username">
-                    <h1 class="profile__username-text">Жак-Ив Кусто</h1>
+                    <h1 class="profile__username-text"></h1>
                     <button class="profile__edit-button" type="button"></button>
                 </div>
-                <p class="profile__description">Исследователь океана</p>
+                <p class="profile__description"></p>
             </div>
             <button class="profile__add-button" type="button">
             </button>
@@ -34,7 +34,10 @@
                         <img class="elements__element-img" alt="">
                         <div class="elements__element-footer">
                             <h2 class="elements__text"></h2>
-                            <button class="elements__like-btn" type="button"></button>
+                            <div class="elements__like">
+                                <button class="elements__like-btn" type="button"></button>
+                                <p class="elements__like-count"></p>
+                            </div>
                         </div>
                     </li>
                 </template>
@@ -83,6 +86,36 @@
             </button>
         </form>
         <button class="popup__close-button popup__close-button_add-photo" type="button"></button>
+    </div>
+</div>
+
+<div class="popup popup_edit-avatar">
+    <div class="popup__container popup__container_align-items_start">
+        <h3 class="popup__text">Обновить аватар</h3>
+
+        <form action="#" class="popup__form popup__form_edit-avatar" method="post" name="editAvatarForm">
+            <input type="url" required class="popup__form-input popup__form-input_avatar-field"
+                   placeholder="Ссылка на аватар" title="avatar-link" id="avatar-input">
+            <span class='popup__form-input-error' id='avatar-input-error'></span>
+            <button type="submit" class="popup__form-btn">
+                Сохранить
+            </button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+    </div>
+</div>
+
+<div class="popup popup_delete-photo">
+    <div class="popup__container popup__container_align-items_start">
+        <h3 class="popup__text">Вы уверены?</h3>
+
+        <form action="#" class="popup__form popup__form_delete-photo" method="post" name="deletePhotoForm">
+            <input type="hidden" title="id">
+            <button type="submit" class="popup__form-btn">
+                Да
+            </button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
     </div>
 </div>
 

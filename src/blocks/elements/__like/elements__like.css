@@ -1,0 +1,6 @@
+.elements__like {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: 18px;
+}

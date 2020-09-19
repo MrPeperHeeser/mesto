@@ -5,33 +5,21 @@ import {
 
 export default class PopupWithForm extends Popup {
 
-  constructor(popupSelector, submitCallback) {
+  constructor(popupSelector, popupSubmitFormSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
     this._inputs = this._getInputs();
+    this._submitButtonContainer = this._container.querySelector(popupSubmitFormSelector);
+    this._defaultSubmitButtonCapture = this._submitButtonContainer.textContent;
   }
 
   _getInputs() {
-    return Array.from(this._container.querySelectorAll('.' + validationParams.formInputClass));
+    return Array.from(this._container.getElementsByTagName('input'));
   }
 
-  _getInputValues() {
-    let inputsValues = [];
-    this._inputs.forEach((input) => {
-      inputsValues.push(
-        {
-          title: input.title,
-          value: input.value
-        }
-      )
-    });
-    return inputsValues;
-  }
-
-  getValueByInputTitle(inputTitle) {
-    const inputsValues = this._getInputValues();
-    const input = inputsValues.filter((inputWithValue) => inputWithValue.title === inputTitle);
-    return input && input.length > 0 ? input[0].value : '';
+  getInputByInputTitle(inputTitle) {
+    const inputs = this._inputs.filter((input) => input.title === inputTitle);
+    return inputs && inputs.length === 1 ? inputs[0] : null;
   }
 
   setEventListeners() {
@@ -39,8 +27,13 @@ export default class PopupWithForm extends Popup {
     this._container.addEventListener('submit', this._submitCallback);
   }
 
+  setWaiting() {
+    this._submitButtonContainer.textContent = 'Сохранение...';
+  }
+
   close() {
     super.close();
+    this._submitButtonContainer.textContent = this._defaultSubmitButtonCapture;
     this._inputs.forEach((input) => {
       input.value = '';
     });
