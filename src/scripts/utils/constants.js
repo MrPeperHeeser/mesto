@@ -33,6 +33,8 @@ export const elementImageSelector = '.elements__element-img';
 export const elementTextSelector = '.elements__text';
 export const elementLikesCountSelector = '.elements__like-count';
 
+export const cardElementIdPrefix = 'CardID';
+
 export const CARD_ELEMENT_TEMPLATE_NAME = '#card';
 
 export const popupOpenClass = 'popup_open';

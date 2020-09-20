@@ -13,12 +13,14 @@ export default class Section {
     }
   }
 
+  removeElementById(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.remove();
+    }
+  }
+
   renderItems() {
-    const childLis = Array.from(this._container.getElementsByTagName('li'));
-    childLis.forEach(
-      (li) => {
-        this._container.removeChild(li)
-      });
     this._renderedItems.forEach(item => {
       this._renderer(item);
     });

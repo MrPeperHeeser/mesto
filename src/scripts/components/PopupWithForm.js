@@ -31,6 +31,10 @@ export default class PopupWithForm extends Popup {
     this._submitButtonContainer.textContent = 'Сохранение...';
   }
 
+  setError() {
+    this._submitButtonContainer.textContent = 'Ошибка!';
+  }
+
   close() {
     super.close();
     this._submitButtonContainer.textContent = this._defaultSubmitButtonCapture;

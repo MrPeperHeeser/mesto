@@ -19,6 +19,7 @@ import {
   profileAvatarContainer,
   elementsListSelector,
   popupSubmitButtonSelector,
+  cardElementIdPrefix,
   CARD_ELEMENT_TEMPLATE_NAME
 } from "../scripts/utils/constants.js";
 
@@ -32,6 +33,8 @@ const api = new Api(
   }
 );
 
+let cardsList;
+
 const imagePopup = new PopupWithImage('.popup_open-photo');
 
 const popupDeleteCardForm = new PopupWithForm(
@@ -40,16 +43,20 @@ const popupDeleteCardForm = new PopupWithForm(
   (e) => {
     e.preventDefault();
     popupDeleteCardForm.setWaiting();
+    const cardId = popupDeleteCardForm.getInputByInputTitle('id').value;
     api.deleteCard({
-      id: popupDeleteCardForm.getInputByInputTitle('id').value
+      id: cardId
     })
       .then(
         () => {
-          fetchCardItems();
+          cardsList.removeElementById(cardElementIdPrefix + cardId);
+          popupDeleteCardForm.close();
         }
       )
-      .catch(e => console.log(e))
-      .finally(() => popupDeleteCardForm.close())
+      .catch(e => {
+        console.log(e);
+        popupDeleteCardForm.setError();
+      })
   }
 );
 
@@ -73,7 +80,7 @@ const createCard = (item) => {
           .then(
             (res) => {
               card.setData(res);
-              card.renderElement(userInfo.getUserId())
+              card.updateLikes(userInfo.getUserId())
             }
           )
           .catch(e => console.log(e))
@@ -83,24 +90,22 @@ const createCard = (item) => {
   return card;
 };
 
-function fetchCardItems() {
-  api.getInitialCards().then(
-    (res) => {
-      const cardsList = new Section(
-        {
-          data: res,
-          renderer: (item) => {
-            const card = createCard(item);
-            const cardElement = card.generateCard(userInfo.getUserId());
-            cardsList.addItem(cardElement, false);
-          }
-        },
-        elementsListSelector
-      );
-      cardsList.renderItems();
-    }
-  ).catch(e => console.log(e));
-}
+api.getInitialCards().then(
+  (res) => {
+    cardsList = new Section(
+      {
+        data: res,
+        renderer: (item) => {
+          const card = createCard(item);
+          const cardElement = card.generateCard(userInfo.getUserId());
+          cardsList.addItem(cardElement, false);
+        }
+      },
+      elementsListSelector
+    );
+    cardsList.renderItems();
+  }
+).catch(e => console.log(e));
 
 const userInfo = new UserInfo(
   {
@@ -128,12 +133,13 @@ const popupEditProfileForm = new PopupWithForm(
             userName: res.name,
             userDescription: res.about
           });
+          popupEditProfileForm.close();
         }
       )
-      .catch(e => console.log(e))
-      .finally(() => {
-        popupEditProfileForm.close();
-      });
+      .catch(e => {
+        console.log(e);
+        popupEditProfileForm.setError();
+      })
   }
 );
 
@@ -149,12 +155,17 @@ const popupEditProfileAvatarForm = new PopupWithForm(
       }
     )
       .then(
-        (res) => userInfo.setAvatar({
-          avatarLink: res.avatar
-        })
+        (res) => {
+          userInfo.setAvatar({
+            avatarLink: res.avatar
+          });
+          popupEditProfileAvatarForm.close();
+        }
       )
-      .catch(e => console.log(e))
-      .finally(() => popupEditProfileAvatarForm.close())
+      .catch(e => {
+        console.log(e);
+        popupEditProfileAvatarForm.setError();
+      })
   }
 );
 
@@ -171,13 +182,16 @@ const popupAddPhotoForm = new PopupWithForm(
       }
     )
       .then(
-        () => {
-          fetchCardItems();
+        (res) => {
+          const card = createCard(res);
+          const cardElement = card.generateCard(userInfo.getUserId());
+          cardsList.addItem(cardElement, true);
+          popupAddPhotoForm.close();
         }
       )
-      .catch(e => console.log())
-      .finally(() => {
-        popupAddPhotoForm.close();
+      .catch(e => {
+        console.log(e);
+        popupAddPhotoForm.setError();
       });
   }
 );
@@ -214,8 +228,6 @@ function openEditProfileAvatarPopupForm() {
   popupEditProfileAvatarForm.open();
   editProfileAvatarFormValidator.resetValidation();
 }
-
-fetchCardItems();
 
 editProfileFormValidator.enableValidation();
 addPhotoFormValidator.enableValidation();
